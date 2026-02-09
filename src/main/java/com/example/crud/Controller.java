@@ -17,9 +17,9 @@ public class Controller {
 
       // path inside the coontroller
     
-      @GetMapping("")
+      @GetMapping("Hello")
     public String ping(){
-        return "Pong...!!";
+        return "Spring Boot is Working...!!";
     } 
     @GetMapping("/2ndRequest")
     public String adb(){
