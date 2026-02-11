@@ -1,39 +1,52 @@
-package com.example.crud;
+package com.example.crud.controller;
 
+
+import com.example.CRUD.dto.UserDto;
+import com.example.CRUD.dto.UserResponseDto;
+import com.example.CRUD.entity.User;
+import com.example.CRUD.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 public class UserController {
 
+
     @Autowired
-    UserService userService;
+    private UserService userService;
 
-    @PostMapping
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+    @GetMapping("")
+    public List<UserResponseDto> getAllUsers(){
+      return userService.getUsers()   ;
     }
 
-    @GetMapping
-    public List<User> getUsers() {
-        return userService.getUsers();
+    @PostMapping("")
+    public UserResponseDto createUser(@RequestBody UserDto userDto){
+        return userService.createUser(userDto) ;
     }
-
     @GetMapping("/{id}")
-    public User getUser(@PathVariable long id) {
-        return userService.getuser(id);
+    public UserResponseDto getUser(@PathVariable long id){
+        return userService.getuser(id) ;
     }
 
-    @PutMapping
-    public User updateUser(@RequestBody User user) {
-        return userService.updateUser(user);
+    @PutMapping("")
+    public UserResponseDto UpdateUser(@RequestBody UserDto userDto){
+        return userService.updateUserPartial(userDto) ;
     }
 
     @DeleteMapping("/{id}")
-    public User deleteUser(@PathVariable long id) {
-        return userService.deleteUser(id);
+    public UserResponseDto deleteUser(@PathVariable long id){
+        return userService.deleteUser(id) ;
     }
+
+
+
+
+
+
+
+
 }

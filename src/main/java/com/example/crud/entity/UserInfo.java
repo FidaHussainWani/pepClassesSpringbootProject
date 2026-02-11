@@ -1,17 +1,29 @@
+package com.example.crud.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class UserInfo {
-  @Id
-  long Id;
-  
-  String name;
-  String phone;
-  String profilePic;
-  String location;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    long Id ;
 
-  @OneToOne
-  User user;
+    private String name  ;
+    private String profilePic ;
+    private String phone ;
+    private String location ;
+
+    private VerficationStatus verificationStatus ;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", unique = true)
+    User user  ;
+
 
 }

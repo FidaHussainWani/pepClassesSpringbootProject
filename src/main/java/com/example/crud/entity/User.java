@@ -1,4 +1,4 @@
-package com.example.crud;
+package com.example.crud.entity;
 
 
 
@@ -10,6 +10,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import main.java.com.example.crud.entity.UserInfo;
 
 
 // this is a entity class and it represents a table in database
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "users")
 public class User {
 
-    @Id
+     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id ;
 
@@ -32,6 +33,11 @@ public class User {
 
     @Column(nullable = false , unique = true)
     private String email;
+
+    @OneToOne(mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    UserInfo userInfo  ;
 
 
 }

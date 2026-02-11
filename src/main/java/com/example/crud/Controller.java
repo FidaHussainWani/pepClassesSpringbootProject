@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.crud.entity.User;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,6 +46,16 @@ public class Controller {
     @GetMapping("/html")
     public String webpage() {
         return "<h1>Dummy Website</h1>";
+    }
+    @GetMapping("/test")
+    User test(){
+        User user = new User();
+        user.setEmail("test@gmail") ;
+        user.setPassword("123456");
+        user.setUsername("test") ;
+
+
+        return user;
     }
 }
 
